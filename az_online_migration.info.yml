@@ -1,0 +1,8 @@
+name: 'Arizona Online migration'
+type: module
+description: 'Migrate content from Arizona Online custom site to Quickstart 2 site.'
+core_version_requirement: ^9 || ^10
+package: 'Custom'
+dependencies:
+ - az_migration
+ - migrate_drupal_d8
