@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+      - migrate_drupal
+      - migrate_tools
+id: az_online_migration
+label: Arizona Online Migrations
+description: Common configuration for simple migrations.
+source_type: Drupal 9 Site (online.arizona.edu)
+core_version_requirement: '>=9.1'
+module: null
+shared_configuration:
+  source:
+    key: migrate
+    constants:
+      ENTERPRISE_ATTRIBUTES:
+      - External Media
+      PATHAUTO_DISABLED_STRING: '0'
+      PATHAUTO_ENABLED_INT: 1
+      OLD_FILES_PATH: online.arizona.edu
+      SOURCE_BASE_PATH: sites/default/files

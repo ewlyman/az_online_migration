@@ -1,0 +1,52 @@
+id: azo_files
+label: All Files
+migration_group: azo_migration
+migration_tags:
+  - Arizona Online File Migration
+migration_dependencies:
+  required:
+    - azo_user
+source:
+  plugin: d8_entity
+  entity_type: file
+
+process:
+  filename: filename
+  source_full_path:
+  - plugin: concat
+    delimiter: /
+    source:
+      - constants/OLD_FILES_PATH
+      - constants/SOURCE_BASE_PATH
+      - filepath
+  - plugin: urlencode
+  uri:
+    plugin: file_copy
+    source:
+      - '@source_full_path'
+      - uri
+    file_exists: "use existing"
+
+  filemime: filemime
+  # filesize is dynamically computed when file entities are saved, so there is
+  # no point in migrating it.
+  # filesize: filesize
+  status: status
+  created: created
+  changed: changed
+  uid:
+  - plugin: migration_lookup
+    migration: azo_user
+    source_entity_type: user
+    source_db_key: migrate
+    source: uid
+  - plugin: migration_lookup
+    migration: azo_user
+    entity_type: user
+    value_key: name
+    bundle: user
+  - plugin: default_value
+    default_value: 0
+
+destination:
+  plugin: entity:file
