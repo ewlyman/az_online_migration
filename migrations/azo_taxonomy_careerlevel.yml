@@ -1,0 +1,33 @@
+id: azo_taxonomy_careerlevel
+label: AZO Taxonomy Career Level
+migration_group: azo_migration
+migration_tags:
+  - AZO Taxonomy Migration
+status: true
+source:
+  plugin: d8_entity
+  entity_type: taxonomy_term
+  bundle: career_level
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: career_level
+
+process:
+  vid:
+    plugin: default_value
+    default_value: career_level
+
+  name: name
+  weight: weight
+
+  'description/value': description
+  'description/format': format
+
+  changed: changed
+
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+      

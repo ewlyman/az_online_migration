@@ -1,0 +1,33 @@
+id: azo_taxonomy_degree_tags
+label: AZO Taxonomy Degree Tags
+migration_group: azo_migration
+migration_tags:
+  - AZO Taxonomy Migration
+status: true
+source:
+  plugin: d8_entity
+  entity_type: taxonomy_term
+  bundle: degree_tags
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: degree_tags
+
+process:
+  vid:
+    plugin: default_value
+    default_value: degree_tags
+
+  name: name
+  weight: weight
+
+  'description/value': description
+  'description/format': format
+
+  changed: changed
+
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+      

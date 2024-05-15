@@ -1,0 +1,33 @@
+id: azo_taxonomy_college
+label: AZO Taxonomy College
+migration_group: azo_migration
+migration_tags:
+  - AZO Taxonomy Migration
+status: true
+source:
+  plugin: d8_entity
+  entity_type: taxonomy_term
+  bundle: college
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: college
+
+process:
+  vid:
+    plugin: default_value
+    default_value: college
+
+  name: name
+  weight: weight
+
+  'description/value': description
+  'description/format': format
+
+  changed: changed
+
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+      

@@ -1,0 +1,33 @@
+id: azo_taxonomy_career_insights_skills
+label: AZO Taxonomy Career Insights Skills
+migration_group: azo_migration
+migration_tags:
+  - AZO Taxonomy Migration
+status: true
+source:
+  plugin: d8_entity
+  entity_type: taxonomy_term
+  bundle: career_insights_skills
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: career_insights_skills
+
+process:
+  vid:
+    plugin: default_value
+    default_value: career_insights_skills
+
+  name: name
+  weight: weight
+
+  'description/value': description
+  'description/format': format
+
+  changed: changed
+
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+      
