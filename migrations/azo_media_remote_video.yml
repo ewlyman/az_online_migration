@@ -1,0 +1,45 @@
+id: azo_media_remote_video
+label: Arizona Online Remote Videos
+migration_group: azo_migration
+audit: true
+migration_tags:
+  - Drupal 9
+  - Content
+  - Arizona Online File Migration
+migration_dependencies:
+  required:
+    - azo_user
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+      - az_media
+source:
+  plugin: d8_entity
+  entity_type: media
+  key: migrate
+  bundle: remote_video
+
+process:
+  name: name
+  changed: changed
+  created: created
+  status: status
+  uuid: uuid
+  langcode: langcode
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+    -
+      plugin: default_value
+      default_value: 0
+
+  field_media_az_oembed_video/value: 'field_media_oembed_video/0/value'
+     
+
+destination:
+  plugin: entity:media
+  default_bundle: az_remote_video

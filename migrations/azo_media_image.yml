@@ -1,0 +1,74 @@
+id: azo_media_image
+label: Arizona Online Media Image
+migration_group: azo_migration
+audit: true
+migration_tags:
+  - Drupal 9
+  - Content
+  - Arizona Online File Migration
+migration_dependencies:
+  required:
+    - azo_user
+    - azo_files
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+      - az_media
+source:
+  plugin: d8_entity
+  entity_type: media
+  key: migrate
+  type: image
+
+process:
+  name: name
+  changed: changed
+  created: created
+  status: status
+  uuid: uuid
+  langcode: langcode
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+
+  thumbnail__target_id:
+    -
+      plugin: migration_lookup
+      migration: azo_files
+      no_stub: true
+      source: thumbnail__target_id
+
+  thumbnail__alt: thumbnail__alt
+  thumbnail__width: thumbnail__width
+  thumbnail__height: thumbnail__height  
+
+# Data for image
+  field_media_az_image/target_id:
+   -
+      plugin: migration_lookup
+      migration: azo_files
+      no_stub: true
+      source: 'field_media_image/0/target_id'
+
+  field_media_az_image/alt: 'field_media_image/0/alt'
+  field_media_az_image/width: 'field_media_image/0/width'
+  field_media_az_image/height: 'field_media_image/0/height'
+
+# Caption
+
+  field_az_caption/value: 
+   -
+    plugin: callback
+    callable: strip_tags
+    source: 'field_azo_caption_formatted/0/value'
+
+
+
+destination:
+  plugin: entity:media
+  default_bundle: az_image
+
