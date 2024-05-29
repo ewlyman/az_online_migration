@@ -1,0 +1,169 @@
+id: azo_node_degree_program
+label: AZO Degree Program Nodes
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - Degree Program Migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+
+migration_dependencies:
+  required:
+     - azo_taxononomy_career_insights_skills
+     - azo_taxonomy_careerlevel
+     - azo_taxonomy_college
+     - azo_taxonomy_degree
+     - azo_taxonomy_degree_interests
+     - azo_taxonomy_degree_tags
+     - azo_user
+     - azo_files
+     - azo_media_image
+     - azo_media_remote_video
+
+
+source:
+  plugin: d8_entity
+  entity_type: node
+  bundle: degree_program
+
+
+process:
+  vid: vid
+  uuid: uuid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+
+  type:
+    plugin: default_value
+    default_value: degree_or_program
+
+# Text and number fields on the content type
+  title: title
+
+  body/value: 'body/0/value'
+  body/summary: 'body/0/summary'
+  body/format:
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_bazaarvoice_id/value: 'field_bazaarvoice_id/0/value'
+
+  field_bg_emsicc_widget_code/value: 'field_bg_emsicc_widget_code/0/value'
+  field_bg_emsicc_widget_code/format:
+        - plugin: default_value
+          strict: false
+          default_value: full_html
+
+
+  field_careers_intro/value: 'field_azo_careers_intro/0/value'
+  field_careers_intro/format:
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_cost_per_credit/value: 'field_per_unit_cost/0/value'
+
+  field_courses_intro/value: 'fields_courses_intro/0/value'
+  field_courses_intro/format: 
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_credits_required/value: 'field_credits_required/0/value'
+
+  field_degree_finder_text/value: 'field_degree_finder_text/0/value'
+
+  field_disclaimer/value: 'field_disclaimer/value'
+  field_disclaimer/format: 
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_display_title/value: 'field_display_title/0/value'  
+
+  field_ranking_primary_custom/value: 'field_ranking_primary_custom/0/value'
+  field_ranking_primary_custom/format: 
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_ranking_secondary_custom/value: 'field_ranking_secondary_custom/0/value'
+  field_ranking_secondary_custom/format: 
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_slate_parameter/value: 'field_slate_parameters/0/value'
+
+# Taxonomy terms on the content type
+
+  field_career_level/target_id:
+      - plugin: migration_lookup
+        source: 'field_career_level_term/0/target_id'
+        migration:
+        - azo_taxonomy_careerlevel
+
+  field_college/target_id:
+      - plugin: migration_lookup
+        source: 'field_college/0/target_id'
+        migration:
+        - azo_taxonomy_college
+
+  field_degree/target_id:
+      - plugin: migration_lookup
+        source: 'field_degree/0/target_id'
+        migration:
+        - azo_taxonomy_degree
+
+# Links
+
+  field_degree_search_link/title: 'field_ds_link/0/title'
+  field_degree_search_link/uri: 'field_ds_link/0/uri'
+  
+
+# Boolean fields
+ 
+  field_show_burning_glass_widget/value: 'field_outcomes_bg_widget/0/value'
+
+  field_show_custom_careers/value: 'field_outcomes_careers_intro/0/value'
+
+  field_show_skills_list/value: 'field_outcomes_skills/0/value'
+
+# Media items
+
+  field_program_image/target_id:
+     - plugin: migration_lookup
+       source: 'field_program_image/0/target_id'
+       migration: azo_media_image
+
+  field_program_details_photo/target_id:
+     - plugin: migration_lookup
+       source: 'field_program_details_photo/0/target_id'
+       migration: azo_media_image
+
+  field_program_details_video/target_id:
+     - plugin: migration_lookup
+       source: 'field_program_details_video/0/target_id'
+       migration: azo_media_remote_video
+
+# Paragraphs
+
+
+
+destination:
+  plugin: entity:node
+  default_bundle: degree_or_program

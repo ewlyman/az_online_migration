@@ -1,0 +1,46 @@
+id: azo_paragraph_course
+label: AZO Paragraphs Courses
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - Degree Program Migration
+  - D9 Paragraphs Migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+
+source:
+  plugin: d8_entity
+  key: migrate
+  entity_type: paragraph
+  bundle: azo_course 
+
+process: 
+
+  course_subject: 'field_azo_text/0/value'
+  course_name: 'field_azo_name/0/value'
+  course_space:
+    -
+     plugin: default_value
+     default_value: ": "
+
+  field_az_accordion/title: 
+   -
+    plugin: concat
+    source:
+      - '@course_subject'
+      - '@course_space'
+      - '@course_name'
+
+  field_az_accordion/body: 'field_azo_description/0/value'
+
+  field_az_accordion/body_format:
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: azo_accordion

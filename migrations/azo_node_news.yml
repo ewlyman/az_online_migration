@@ -1,0 +1,97 @@
+id: azo_node_news
+label: AZO News Nodes
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - News stories migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+
+migration_dependencies:
+  required:
+     - azo_taxononomy_news_categories
+     - azo_files
+     - azo_media_image
+     - azo_media_remote_video
+
+source:
+  plugin: d8_entity
+  entity_type: node
+  bundle: news
+
+destination:
+  plugin: entity:node
+  default_bundle: arizona_online_news
+
+process:
+
+  title: title
+  vid: vid
+  uuid: uuid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+  
+  type:
+    plugin: default_value
+    default_value: arizona_online_news
+
+  field_az_published/value: 'field_story_date/0/value'
+
+  pf_blurb_start:
+    -
+     plugin: default_value
+     default_value: "<div class=\"blurb-text\""
+
+  pf_blurb: 'field_blurb_text/0/value'
+
+  pf_blurb_close:
+    -
+     plugin: default_value
+     default_value: "</div>"
+
+  pf_body: 'body/0/value'
+  
+  field_az_body/value: 
+    -
+     plugin: concat
+     source:
+      - '@pf_blurb_start'
+      - '@pf_blurb'
+      - '@pf_blurb_close'
+      - '@pf_body'
+
+  field_az_body/format:
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_az_byline/value: 'field_byline/0/value'
+
+  field_az_news_tags/target_id: 'field_story_categoy/target_id'
+
+  field_az_media_thumbnail_image/target_id: 
+     - plugin: migration_lookup
+       source: 'field_byline_photo/0/target_id'
+       migration: azo_media_image
+
+  field_az_media_image/target_id:     
+     - plugin: migration_lookup
+       source: 'field_story_image/0/target_id'
+       migration: azo_media_image
+
+  field_azo_more_info_link/title: 'field_more_info_link/0/title'
+  field_azo_more_info_link/uri: 'field_more_info_link/0/uri'
+
