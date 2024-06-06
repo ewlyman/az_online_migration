@@ -31,7 +31,7 @@ source:
 
 
 process:
-  vid: vid
+ # vid: vid
   uuid: uuid
   status: status
   created: created
@@ -145,7 +145,7 @@ process:
 
 # Media items
 
-  field_program_image/target_id:
+  field_program_image/0/target_id:
      - plugin: migration_lookup
        source: 'field_program_image/0/target_id'
        migration: azo_media_image
@@ -162,7 +162,285 @@ process:
 
 # Paragraphs
 
+#  We have to look these up one at a time due to
+#  limitations of the migrate_drupal_d8 module   
 
+#  COURSES
+
+  field_courses/0/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/0/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/0/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/0/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/1/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/1/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/1/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/1/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/2/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/2/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/2/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/2/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/3/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/3/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/3/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/3/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/4/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/4/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/4/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/4/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/5/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/5/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/5/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/5/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/6/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/6/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/6/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/6/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/7/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/7/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/7/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/7/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+
+  field_courses/8/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/8/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/8/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/8/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/9/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/9/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/9/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/9/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/10/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/10/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/10/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/10/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/11/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/11/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/11/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/11/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/12/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/12/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/12/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/12/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/13/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/13/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/13/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/13/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/14/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/14/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/14/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/14/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/15/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/15/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/15/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/15/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1 
+
+  field_courses/16/target_id:
+       - plugin: migration_lookup
+         source: 'field_courses/16/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/16/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_courses/16/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1 
+
+            
 
 destination:
   plugin: entity:node

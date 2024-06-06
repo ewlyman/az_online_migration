@@ -18,6 +18,13 @@ source:
   bundle: azo_course 
 
 process: 
+  
+  revision_id: revision_id
+  uuid: uuid
+
+  type:
+    plugin: default_value
+    default_value: azo_course
 
   course_subject: 'field_azo_text/0/value'
   course_name: 'field_azo_name/0/value'
@@ -43,4 +50,4 @@ process:
 
 destination:
   plugin: 'entity_reference_revisions:paragraph'
-  default_bundle: azo_accordion
+  default_bundle: azo_course
