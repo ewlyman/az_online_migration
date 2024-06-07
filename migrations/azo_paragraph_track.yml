@@ -1,0 +1,158 @@
+id: azo_paragraph_track
+label: AZO Paragraphs Tracks
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - Degree Program Migration
+  - D9 Paragraphs Migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+
+source:
+  plugin: d8_entity
+  key: migrate
+  entity_type: paragraph
+  bundle: azo_track
+
+process:
+  revision_id: revision_id
+  uuid: uuid
+
+  type:
+    plugin: default_value
+    default_value: azo_track
+
+  title: title
+
+  field_az_photos/target_id:
+    - plugin: migration_lookup
+      source: 'field_azo_photo/0/target_id'
+      migration: azo_media_image
+
+  field_azo_name/value: 'field_azo_name/0/value'
+
+  field_azo_description/value: 'field_azo_description/0/value'
+  field_azo_description/format:
+  - plugin: default_value
+    strict: false
+    default_value: az_standard
+
+  field_courses_intro/value: 'field_azo_long_text/0/value'
+  field_courses_intro/format:
+  - plugin: default_value
+    strict: false
+    default_value: az_standard
+
+#  COURSES
+
+  field_courses/0/target_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/0/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/0/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/0/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/1/target_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/1/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/1/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/1/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/2/target_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/2/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/2/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/2/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/3/target_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/3/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/3/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/3/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_courses/4/target_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/4/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/4/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/4/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_courses/5/target_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/5/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 0
+
+  field_courses/5/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_azo_paragraph/5/target_id'
+         migration: azo_paragraph_course
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_azo_more_info_link/title: 'field_azo_link/0/title'
+  field_azo_more_info_link/uri: 'field_azo_link/0/uri'
+
+
+
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: azo_track
+
+
+
+  

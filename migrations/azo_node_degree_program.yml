@@ -440,7 +440,104 @@ process:
          index: 
               - 1 
 
-            
+# TRACKS
+  
+  field_tracks/0/target_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/0/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 0
+
+  field_tracks/0/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/0/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_tracks/1/target_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/1/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 0
+
+  field_tracks/1/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/1/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_tracks/2/target_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/2/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 0
+
+  field_tracks/2/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/2/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_tracks/3/target_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/3/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 0
+
+  field_tracks/3/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/3/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 1   
+
+  field_tracks/4/target_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/4/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 0
+
+  field_tracks/4/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/4/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 1             
+
+  field_tracks/5/target_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/5/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 0
+
+  field_tracks/5/target_revision_id:
+       - plugin: migration_lookup
+         source: 'field_tracks/5/target_id'
+         migration: azo_paragraph_track
+       - plugin: extract
+         index: 
+              - 1   
+
 
 destination:
   plugin: entity:node
