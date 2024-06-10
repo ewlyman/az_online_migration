@@ -18,7 +18,7 @@ migration_dependencies:
      - azo_taxonomy_degree
      - azo_taxonomy_degree_interests
      - azo_taxonomy_degree_tags
-     - azo_user
+#     - azo_user
      - azo_files
      - azo_media_image
      - azo_media_remote_video
@@ -77,7 +77,7 @@ process:
 
   field_cost_per_credit/value: 'field_per_unit_cost/0/value'
 
-  field_courses_intro/value: 'fields_courses_intro/0/value'
+  field_courses_intro/value: 'field_courses_intro/0/value'
   field_courses_intro/format: 
         - plugin: default_value
           strict: false
@@ -87,7 +87,7 @@ process:
 
   field_degree_finder_text/value: 'field_degree_finder_text/0/value'
 
-  field_disclaimer/value: 'field_disclaimer/value'
+  field_disclaimer/value: 'field_disclaimer/0/value'
   field_disclaimer/format: 
         - plugin: default_value
           strict: false

@@ -1,0 +1,53 @@
+id: azo_node_corp_logo
+label: AZO Degree Program Nodes
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - Corporate Partner Logo Content Type Migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+
+migration_dependencies:
+  required:
+     - azo_files
+     - azo_media_image
+
+
+source:
+  plugin: d8_entity
+  entity_type: node
+  bundle: corporate_partner_logo
+
+process:
+  vid: vid
+  uuid: uuid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+
+  title: title
+
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+
+  field_logo/target_id:
+     - plugin: migration_lookup
+       source: 'field_logo/0/target_id'
+       migration: azo_media_image    
+
+  type:
+    plugin: default_value
+    default_value: corporate_partner_logo
+
+destination:
+    plugin: entity:node
+    default_bundle: corporate_partner_logo

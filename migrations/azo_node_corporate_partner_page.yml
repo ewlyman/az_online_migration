@@ -1,0 +1,51 @@
+id: azo_node_corporate_partner_page
+label: AZO Corporate Partner Basic Pages
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - Corporate Partner Page Migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+
+
+source:
+  plugin: d8_entity
+  entity_type: node
+  bundle: corporate_basic
+
+
+process:
+  vid: vid
+  uuid: uuid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+
+  type:
+    plugin: default_value
+    default_value: corporate_partner_page
+
+  title: title
+
+  body/value: 'body/0/value'
+  body/summary: 'body/0/summary'
+  body/format:
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+destination:
+  plugin: entity:node
+  default_bundle: corporate_partner_page

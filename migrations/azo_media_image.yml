@@ -8,7 +8,7 @@ migration_tags:
   - Arizona Online File Migration
 migration_dependencies:
   required:
-    - azo_user
+#    - azo_user
     - azo_files
 dependencies:
   enforced:

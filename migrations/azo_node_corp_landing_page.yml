@@ -1,0 +1,56 @@
+id: azo_node_corp_landing_page
+label: AZO Degree Program Nodes
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - Corporate Partner Landing Pages Migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+
+migration_dependencies:
+  required:
+     - azo_files
+     - azo_media_image
+     - azo_media_remote_video
+
+
+source:
+  plugin: d8_entity
+  entity_type: node
+  bundle: corporate_partners_partner_page
+
+process:
+#  vid: vid
+  uuid: uuid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+
+  type:
+    plugin: default_value
+    default_value: corporate_partner_landing_page
+
+  title: title
+
+  field_corp_partner_logo/target_id:
+     - plugin: migration_lookup
+       source: 'field_corp_partner_logo/0/target_id'
+       migration: azo_media_image
+
+  field_corp_partner_slate_param/value: 'field_corp_partner_slate_param/0/value'  
+
+destination:
+    plugin: entity:node
+    default_bundle: corporate_partner_landing_page

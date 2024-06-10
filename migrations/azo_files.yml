@@ -4,8 +4,8 @@ migration_group: azo_migration
 migration_tags:
   - Arizona Online File Migration
 migration_dependencies:
-  required:
-    - azo_user
+#  required:
+#    - azo_user
 source:
   plugin: d8_entity
   entity_type: file

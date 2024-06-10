@@ -1,0 +1,64 @@
+id: azo_node_corporate_news
+label: AZO Corporate Partner News Items
+migration_group: azo_migration
+migration_tags:
+  - AZO Node Migration
+  - Corporate Partner News Items Migration
+status: true
+dependencies:
+  enforced:
+    module:
+      - az_online_migration
+migration_dependencies:
+    required:
+     - azo_files
+     - azo_media_image
+
+source:
+  plugin: d8_entity
+  entity_type: node
+  bundle: corporate_partner_news_item
+
+
+process:
+  title: title
+  vid: vid
+  uuid: uuid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+
+  uid:
+    -
+      plugin: migration_lookup
+      migration: azo_user
+      no_stub: true
+      source: uid
+
+  type:
+    plugin: default_value
+    default_value: corporate_partner_news
+
+  body/value: 'body/0/value'
+  body/summary: 'body/0/summary'
+  body/format:
+        - plugin: default_value
+          strict: false
+          default_value: az_standard
+
+  field_az_media_image/target_id:     
+     - plugin: migration_lookup
+       source: 'field_story_image/0/target_id'
+       migration: azo_media_image
+
+  field_az_published/value: 'field_cpnews_publish_on/0/value'
+
+  field_cpnews_call_to_action/title: 'field_more_info_link/0/title'
+  field_cpnews_call_to_action/uri: 'field_more_info_link/0/uri'
+
+
+destination:
+  plugin: entity:node
+  default_bundle: corporate_partner_news
